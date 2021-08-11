@@ -1,12 +1,14 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+
 module.exports = function (env,argv) {
     return {
         entry:{
-            app:"./src/index.js"
+            main:"./src/index.js"
         },
         output:{
-            path:path.resolve(__dirname,"dist"),
+            path:path.join(path.resolve(__dirname),"dist"),
             filename:'[name].bundle.js',
             clean:true,
         },
@@ -14,22 +16,21 @@ module.exports = function (env,argv) {
             new HtmlWebpackPlugin({
                 title:'Production',
                 template:'./src/templates/index.html',
-            })
+            }),
         ],
         module:{
             rules :[
                 {
-                    test:'/\.css$/i',
+                    test:/\.css$/i,
                     use:["style-loadaer","css-loader"]
                 },
-                // {
-                //     test:'/\.[jsx|js]$/',
-                //     use:[]
-                // },
-                // {
-                //     test:'/\.html$/',
-                //     use:['html-loader']
-                // }
+                {
+                    test:/\.(js)$/,
+                    exclude:'/node-modules/',
+                    use:{
+                      loader: 'babel-loader',
+                    }
+                },
             ]
         }
     }

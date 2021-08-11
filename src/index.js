@@ -1,6 +1,9 @@
-function output() {
-    console.log("output hello world")
-    console.log('hello i am getting good at weebpack')
-}
+import React from "react";
+import ReactDOM  from "react-dom";
 
-window.addEventListener("load",output)
+import App from './components/App'
+
+ReactDOM.render(
+    <App/>,
+    document.getElementById('root')
+)
