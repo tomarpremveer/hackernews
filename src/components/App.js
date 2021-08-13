@@ -1,10 +1,11 @@
 import React from "react"
-import AnotherComponent  from "./AnotherComponent";
+import NewsContainer from "./NewsContainer"
+
 const App = function () {
+    console.log(NewsContainer)
     return (
             <div>
-               <p>this is the react component</p>
-               <AnotherComponent/> 
+                <NewsContainer/>
             </div>
     )
 }

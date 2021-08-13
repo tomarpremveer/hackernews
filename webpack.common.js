@@ -8,9 +8,10 @@ module.exports = function (env,argv) {
             main:"./src/index.js"
         },
         output:{
-            path:path.join(path.resolve(__dirname),"dist"),
+            path:path.join(path.resolve(__dirname),"public"),
             filename:'[name].bundle.js',
             clean:true,
+            chunkFilename:'[name].js'
         },
         plugins:[
             new HtmlWebpackPlugin({
@@ -22,10 +23,11 @@ module.exports = function (env,argv) {
             rules :[
                 {
                     test:/\.css$/i,
-                    use:["style-loadaer","css-loader"]
+                    include:'/src/components/',
+                    use:['style-loader','css-loader']
                 },
                 {
-                    test:/\.(js)$/,
+                    test:/\.js$/,
                     exclude:'/node-modules/',
                     use:{
                       loader: 'babel-loader',

@@ -6,7 +6,7 @@ module.exports = webpackMerge(common(), {
     mode:'development',
     devtool:'inline-source-map', // for source code mapping in case of error
     devServer:{
-        contentBase:path.resolve(__dirname ,'./dist')
+        contentBase:path.resolve(__dirname ,'./public')
     },
 
 
