@@ -1,6 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = function (env,argv) {
     return {
@@ -15,16 +15,16 @@ module.exports = function (env,argv) {
         },
         plugins:[
             new HtmlWebpackPlugin({
-                title:'Production',
+                title:'HackerNews Clone',
                 template:'./src/templates/index.html',
             }),
         ],
         module:{
             rules :[
                 {
-                    test:/\.css$/i,
-                    include:'/src/components/',
-                    use:['style-loader','css-loader']
+                    test:/\.css$/,
+                    use:['style-loader','css-loader'],
+                    sideEffects:true,
                 },
                 {
                     test:/\.js$/,
