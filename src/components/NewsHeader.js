@@ -11,7 +11,7 @@ const NewsHeader = function () {
     return (
         <>
             <div>
-                <p>This is the news header</p>
+                <p>This is where the navbar goes</p>
             </div>
         </>
     )

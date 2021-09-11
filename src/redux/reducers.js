@@ -1,29 +1,24 @@
 import produce from "immer";
-import {ITEMS_FETCHED, ITEM_UPVOTED } from "./actions"
+import {MAX_ITEM_ID_FETCHED, ITEM_UPVOTED, NEWS_FETCHED } from "./actions"
 const INITIAL_STATE = {
-    items:[]
+    maxId:0,
+    news:[]
 }
 
-const reducer = (state=INITIAL_STATE,action) =>{
-    produce(state,draftState => {
+const newsReducer = (state=INITIAL_STATE,action) => {
+   return produce(state, draftState => {
         switch(action.type) {
-            case ITEMS_FETCHED:
-               draftState.items.push(...action.payload)
+            case MAX_ITEM_ID_FETCHED:
+               draftState.maxId = action.payload
             case ITEM_UPVOTED:
                 break;
+            case NEWS_FETCHED:
+                console.log("the news are",...action.payload)
+                draftState.news.push(...action.payload)
         }
     })
 
 }
 
-// const reducer = (state=INITIAL_STATE, action) => {
-//     switch(action.type){
-//         case ITEMS_FETCHED:
-//             console.log('came here')
-//             return {...state, items:[...state.items, ...action.payload]}
-//         default:
-//             return state;
-//     }
-// }
 
-export default reducer;
+export default newsReducer;

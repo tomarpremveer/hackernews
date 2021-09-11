@@ -18,6 +18,7 @@ module.exports = function (env,argv) {
                 title:'HackerNews Clone',
                 template:'./src/templates/index.html',
             }),
+            
         ],
         module:{
             rules :[
