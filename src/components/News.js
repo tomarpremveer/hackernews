@@ -8,7 +8,7 @@ const News = function () {
         <div>
         { newsArray.length > 0 ?
             newsArray.map((news) => (
-                <div key={news.id}> <p> {news.text} </p></div>
+                <div className="newsExcerpt" key={news.id}> <p> {news.title} </p></div>
             )) : <p>No items was found</p>
         }
         </div>

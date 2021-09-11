@@ -1,5 +1,5 @@
 import produce from "immer";
-import {MAX_ITEM_ID_FETCHED, ITEM_UPVOTED, NEWS_FETCHED } from "./actions"
+import {MAX_ITEM_ID_FETCHED, ITEM_UPVOTED, NEWS_FETCHED, LOCAL_ITEMS_FETCHED } from "./actions"
 const INITIAL_STATE = {
     maxId:0,
     news:[]
@@ -14,6 +14,8 @@ const newsReducer = (state=INITIAL_STATE,action) => {
                 break;
             case NEWS_FETCHED:
                 console.log("the news are",...action.payload)
+                draftState.news.push(...action.payload)
+            case LOCAL_ITEMS_FETCHED:
                 draftState.news.push(...action.payload)
         }
     })

@@ -1,23 +1,30 @@
+import { newsApi,maximumItemIdApi } from "../modules/api/API"
+import { getNews, saveNews } from "../modules/utils/LocalStorageUtil"
+
 export const ITEM_UPVOTED = 'ITEM_UPVOTED'
 export const MAX_ITEM_ID_FETCHED = 'MAX_ITEM_ID_FETCHED'
 export const NEWS_FETCHED ='NEWS_FETCHED'
+export const LOCAL_ITEMS_FETCHED='LOCAL_ITEMS_FETCHED'
 
 export const itemUpvoted = () => ({ type:ITEM_UPVOTED })
 
-export const maxItemIdFetched = () => async(dispatch,getState) => {
-console.log("did we came here")
+export const localItemFetched = () => {
+    const news = getNews();
+    return {
+        type: LOCAL_ITEMS_FETCHED,
+        payload: news
+    }
+}
+
+export const maxItemIdFetched = () => async (dispatch,getState) => {
+
     //TODO add response validation logic here or create a seperate method to do that
     const state = getState();
     const {maxId} = state.news
     
     if(maxId == 0 ){
-        const response = await fetch('https://hacker-news.firebaseio.com/v0/maxitem.json')
-        await response
-        .json()
-        .then(maxItemIds => {
-                dispatch({ type:MAX_ITEM_ID_FETCHED,payload: maxItemIds })
-            })
-        .catch((error) => console.log(error))
+        let maxItemId = await maximumItemIdApi();
+        dispatch({ type:MAX_ITEM_ID_FETCHED,payload: maxItemId })
     }
     
 }
@@ -25,18 +32,13 @@ console.log("did we came here")
 /*TODO Slowest thunk.
 Reason : the way hackernews api provides data.
 */
-export const itemsFetched = (maxIds) =>async (dispatch,getState) => {
-    var fetchedItems = [];
-    for (let index=0; index < 10; index++){
-        const response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${maxIds-index}.json`)
-        await response
-        .json()
-        .then(item =>{
-            fetchedItems.push(item)
-        })
-        .catch(error => console.log('error occured',error))
-    }
+export const itemsFetched = (maxIds) => async (dispatch) => {
+    let fetchedItems = await newsApi(maxIds);
+    /*
+    TODO check here if there are posts in the localstorage them show them while new posts are fetched.
+    */
     if(fetchedItems.length >= 1){
+        saveNews(fetchedItems) // save to the localStorage
         dispatch({type: NEWS_FETCHED,payload: fetchedItems})
     }
 }
