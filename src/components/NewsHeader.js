@@ -10,8 +10,11 @@ const HeaderLinks =[
 const NewsHeader = function () {
     return (
         <>
-            <div>
-                <p>This is where the navbar goes</p>
+            <div className="header">
+                <ul>
+                    <li className="navbar-element">Top Stories</li>
+                    <li className="navbar-element">Featured Stories</li>
+                </ul>
             </div>
         </>
     )

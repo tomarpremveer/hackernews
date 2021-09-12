@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import Paginator from "./Paginator";
 import Vote from "./Vote";
 
 const News = function ({newsArray}) {
@@ -22,13 +23,16 @@ const News = function ({newsArray}) {
             )) : <p>No items was found</p>
         }
         </div>
+        <div className="footer">
+            <Paginator newsCount={newsArray.length} />
+        </div>
         </>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-        newsArray : state.news.news
+        newsArray : Object.values(state.news.news)
     }
 }
 
