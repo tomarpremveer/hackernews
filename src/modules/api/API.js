@@ -9,7 +9,6 @@ export async function newsApi(maxIds){
             /*
             TODO check whether the item is a post or comment if is a post then push it into the fetchedArray
             */
-           console.log("this item was fetched, why it's not showing",item)
            if(item.type == "story"){
                 newsItemCount +=1;
                 fetchedItems.push(item)

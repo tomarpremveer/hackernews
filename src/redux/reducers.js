@@ -10,13 +10,19 @@ const newsReducer = (state=INITIAL_STATE,action) => {
         switch(action.type) {
             case MAX_ITEM_ID_FETCHED:
                draftState.maxId = action.payload
+               break;
             case ITEM_UPVOTED:
+                const newsItem = draftState.news.find(item => item.id == action.payload)
+                newsItem.score +=1;
                 break;
             case NEWS_FETCHED:
-                console.log("the news are",...action.payload)
+                console.log('or here')
                 draftState.news.push(...action.payload)
+                break;
             case LOCAL_ITEMS_FETCHED:
+                console.log('is it comming herer')
                 draftState.news.push(...action.payload)
+                break;
         }
     })
 

@@ -10,10 +10,10 @@ const NewsContainer = function () {
     
     useEffect(() =>{
         dispatch(localItemFetched())
-        dispatch(maxItemIdFetched())
-        if(maxId != 0 ) dispatch(itemsFetched(maxId))
-        
-    },[maxId])
+        //dispatch(maxItemIdFetched())
+       // if(maxId != 0 ) dispatch(itemsFetched(maxId))
+    })  
+    //},[maxId])
     return (
         <div className="container">
             <div>

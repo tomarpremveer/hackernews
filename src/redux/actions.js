@@ -6,7 +6,7 @@ export const MAX_ITEM_ID_FETCHED = 'MAX_ITEM_ID_FETCHED'
 export const NEWS_FETCHED ='NEWS_FETCHED'
 export const LOCAL_ITEMS_FETCHED='LOCAL_ITEMS_FETCHED'
 
-export const itemUpvoted = () => ({ type:ITEM_UPVOTED })
+export const itemUpvoted = (newsId) => ({ type:ITEM_UPVOTED,payload: newsId })
 
 export const localItemFetched = () => {
     const news = getNews();
