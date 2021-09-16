@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import NewsExcerpt from "./NewsExcerpt";
 import Paginator from "./Paginator";
-import Vote from "./Vote";
 
 const News = function ({newsArray}) {
     return (
@@ -9,17 +9,7 @@ const News = function ({newsArray}) {
         <div>
         { newsArray.length > 0 ?
             newsArray.map((news) => (
-                <React.Fragment key={news.id}>
-                    <div className="newsExcerpt"> 
-                        <div className="title"> <p> {news.title} </p></div>
-                        <div>
-                            <div className="user"> 
-                            <p>{`By ${news.by} and Votes are: ${news.score}`}</p>
-                             </div>
-                            <div className="vote"><Vote newsId={news.id}/></div>
-                        </div>
-                    </div>
-                </React.Fragment>
+              <NewsExcerpt key={news.id} news={news} />  
             )) : <p>No items was found</p>
         }
         </div>
