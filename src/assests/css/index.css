@@ -30,6 +30,12 @@
     color: white;
 }
 
+.pagination-element{
+    display: inline;
+    height: 20px;
+    margin-right: 4px;
+}
+
 .navbar-element:hover {
     background-color: beige;
     color: black;

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import NewsExcerpt from "./NewsExcerpt";
 import Paginator from "./Paginator";
-
+const newsSelector = (state) => state.news.news
 const News = function ({newsArray}) {
     return (
         <>
@@ -22,7 +22,7 @@ const News = function ({newsArray}) {
 
 const mapStateToProps = (state) => {
     return {
-        newsArray : Object.values(state.news.news)
+        newsArray : Object.values(newsSelector(state))
     }
 }
 

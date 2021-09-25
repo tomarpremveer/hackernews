@@ -13,9 +13,7 @@ news:{
 */
 const INITIAL_STATE = {
     maxId:0,
-    news:{
-
-    }
+    news:{}
 }
 
 const newsReducer = (state = INITIAL_STATE, action) => {
