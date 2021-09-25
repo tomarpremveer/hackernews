@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = function (env,argv) {
     return {
@@ -18,7 +19,7 @@ module.exports = function (env,argv) {
                 title:'HackerNews Clone',
                 template:'./src/templates/index.html',
             }),
-            
+            new BundleAnalyzerPlugin(),
         ],
         module:{
             rules :[
