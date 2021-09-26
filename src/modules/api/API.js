@@ -5,6 +5,8 @@ export async function newsApi(maxIds){
         const response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${maxIds-index}.json`)
         await response
         .json()
+        /*Check whether the response received is okay or not. */
+        .then(response => validateResponse(response))
         .then(item =>{
             /*
             TODO check whether the item is a post or comment if is a post then push it into the fetchedArray
@@ -29,4 +31,9 @@ export async function maximumItemIdApi(){
         .then(maxItemIds => maxItemId = maxItemIds)
         .catch((error) => console.log(error))
     return maxItemId;
+}
+
+function validateResponse(response){
+    console.log(response)
+    return response;
 }

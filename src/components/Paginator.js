@@ -1,8 +1,9 @@
 import React from "react";
 
+
 function Paginator({
     newsCount, 
-    onPageClickHandler = (pageNumber) => { console.log(pageNumber)}
+    pageClickHandlerCallback = (pageNumber) => { console.log(pageNumber)}
     }){
         var pages=[];
         const noOfPages = Math.ceil(newsCount/10);
@@ -18,7 +19,7 @@ function Paginator({
                     <button
                     key ={page} 
                     className="pagination-element"
-                    onClick={() => onPageClickHandler(page)}
+                    onClick={() => pageClickHandlerCallback(page)}
                     title={page}
                     >{page}</button>   
                     )) : null
