@@ -1,17 +1,17 @@
 export async function newsApi(maxIds){
     var fetchedItems = [];
-    let [newsItemCount, index] =[0,0];
+    var [newsItemCount, index] =[0,0];
     while(true){
         const response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${maxIds-index}.json`)
         await response
+        .then(resp => validateResponse(resp))
         .json()
         /*Check whether the response received is okay or not. */
-        .then(response => validateResponse(response))
         .then(item =>{
             /*
             TODO check whether the item is a post or comment if is a post then push it into the fetchedArray
             */
-           if(item.type == "story"){
+           if(item && item.type == "story"){
                 newsItemCount +=1;
                 fetchedItems.push(item)
            }
@@ -34,6 +34,11 @@ export async function maximumItemIdApi(){
 }
 
 function validateResponse(response){
-    console.log(response)
+    if(!response.ok){
+        /*
+        Dispatch the error action here, letting the redux store that an error occured during the fetch
+        */
+       return null;
+    }
     return response;
 }

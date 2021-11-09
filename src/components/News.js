@@ -2,8 +2,10 @@ import React,{ useState } from "react";
 import { connect } from "react-redux";
 import NewsExcerpt from "./NewsExcerpt";
 import Paginator from "./Paginator";
+
+
 const newsSelector = (state) => state.news.news
-const onPageClickHandler = (pageNumber=1) => setPageNumber(pageNumber)
+
 const calculateNews = (news,pageNumber,limit=10) =>{
     const startingOffset= (pageNumber -1) * limit
     const endOffset = startingOffset + limit

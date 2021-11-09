@@ -7,7 +7,7 @@ const HeaderLinks =[
     },
 ]
 
-const NewsHeader = function () {
+const Header = function () {
     return (
         <>
             <div className="header">
@@ -20,4 +20,4 @@ const NewsHeader = function () {
     )
 }
 
-export default NewsHeader;
+export default Header;

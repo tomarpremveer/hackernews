@@ -1,7 +1,8 @@
 import React, { useEffect } from "react"
 import { maxItemIdFetched, itemsFetched, localItemFetched } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux"
-import NewsHeader from "./NewsHeader"
+import Header from "./Header"
+import Footer from "./Footer";
 import News from "./News";
 import "../assests/css/index.css";
 
@@ -17,10 +18,13 @@ const NewsContainer = function () {
     return (
         <div className="container">
             <div>
-                <NewsHeader/>
+                <Header/>
             </div>
             <div id="news">
                 <News/>
+            </div>
+            <div>
+                <Footer />
             </div>
         </div>
     )

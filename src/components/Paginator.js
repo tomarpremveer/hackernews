@@ -4,7 +4,8 @@ import React from "react";
 function Paginator({
     newsCount, 
     pageClickHandlerCallback = (pageNumber) => { console.log(pageNumber)}
-    }){
+    }
+    ){
         var pages=[];
         const noOfPages = Math.ceil(newsCount/10);
 
