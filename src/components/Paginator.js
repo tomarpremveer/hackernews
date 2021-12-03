@@ -6,15 +6,15 @@ function Paginator({
     pageClickHandlerCallback = (pageNumber) => { console.log(pageNumber)}
     }
     ){
-        var pages=[];
+        var pages = [];
         const noOfPages = Math.ceil(newsCount/10);
 
-        for (let i=1; i<=noOfPages; i++){
+        for (let i = 1; i <= noOfPages; i++){
             pages.push(i);
         }
         
         return (
-            <div>
+            <div className="pagination-row">
                 {
                 pages.length > 0 ? pages.map(page => (
                     <button

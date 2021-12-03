@@ -4,7 +4,8 @@
 .container{
     margin: 0 auto;
     width: 800px;
-
+    position:relative;
+    top:-9px;
 } 
 .newsExcerpt{
     border: 2px black solid;
@@ -25,13 +26,17 @@
     
 }
 .user{
+    display: flex;
     flex-basis: 70%;
     margin:0 0;
+    justify-content: flex-start;
 }
 
 .vote{
+    display: flex;
     flex-basis: 30%;
     margin:0 0;
+    justify-content: flex-end;
 }
 
 .user > p {
@@ -45,6 +50,7 @@
 .header{
     background-color: darkslategray;
     height: 25px;
+    border-radius: 3px;
 }
 
 .header ul {
@@ -65,8 +71,15 @@
     cursor: pointer;
 }
 
+.pagination-row{
+    height: 23px;
+    display: flex;
+    justify-content: center;
+    background-color: coral;
+    align-items: center;
+}
+
 .pagination-element{
-    display: inline;
     height: 20px;
     margin-right: 4px;
 }
@@ -79,10 +92,5 @@
         height: 100px;
         margin: 3px 3px;
         padding: 2px 2px;
-    }
-
-    .header{
-        height: 25px;
-        
     }
 }
