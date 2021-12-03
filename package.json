@@ -6,7 +6,7 @@
   "sideEffects": false,
   "scripts": {
     "dev": "webpack serve --open --config webpack.dev.js --hot",
-    "prod": "webpack  --config webpack.prod.js"
+    "prod": "webpack  --config webpack.prod.js "
   },
   "dependencies": {
     "@babel/core": "^7.15.0",
@@ -15,7 +15,6 @@
     "babel-loader": "^8.2.2",
     "css-loader": "^6.2.0",
     "immer": "^9.0.6",
-    "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.5",
@@ -32,7 +31,6 @@
     "@babel/plugin-transform-runtime": "^7.15.0",
     "html-loader": "^2.1.2",
     "html-webpack-plugin": "^5.3.2",
-    "mini-css-extract-plugin": "^2.2.0",
     "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2",

@@ -1,17 +1,9 @@
-const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-module.exports = function (env,argv) {
+module.exports = function () {
     return {
         entry:{
-            main:"./src/index.js"
-        },
-        output:{
-            path:path.join(path.resolve(__dirname),"public"),
-            filename:'[name].bundle.js',
-            clean:true,
-            chunkFilename:'[name].js'
+            main:"./src/index.js" //this is where the webpack will start building the dependency graph
         },
         plugins:[
             new HtmlWebpackPlugin({

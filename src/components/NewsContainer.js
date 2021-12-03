@@ -1,10 +1,11 @@
-import React, { useEffect } from "react"
+import React, { useEffect,lazy, Suspense } from "react"
 import { maxItemIdFetched, itemsFetched, localItemFetched } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux"
 import Header from "./Header"
-import Footer from "./Footer";
 import News from "./News";
 import "../assests/css/index.css";
+
+const LazyLoadedFooter = lazy(() => import('./Footer'));
 
 const NewsContainer = function () {
     const dispatch = useDispatch();
@@ -24,7 +25,10 @@ const NewsContainer = function () {
                 <News/>
             </div>
             <div>
-                <Footer />
+                <Suspense fallback="loading...">
+                    <LazyLoadedFooter />
+                </Suspense>
+                
             </div>
         </div>
     )
