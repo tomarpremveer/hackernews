@@ -4,8 +4,8 @@ export async function newsApi(maxIds){
     while(true){
         const response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${maxIds-index}.json`)
         await response
-        .then(resp => validateResponse(resp))
         .json()
+        .then(resp => validateResponse(resp))
         /*Check whether the response received is okay or not. */
         .then(item =>{
             /*
