@@ -10,7 +10,7 @@ const LazyLoadedFooter = lazy(() => import('./Footer'));
 const NewsContainer = function () {
     const dispatch = useDispatch();
     const maxId = useSelector(state => state.news.maxId)
-    
+
     useEffect(() =>{
         dispatch(localItemFetched())
         dispatch(maxItemIdFetched())

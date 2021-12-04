@@ -13,7 +13,8 @@ news:{
 */
 const INITIAL_STATE = {
     maxId:0,
-    news:{}
+    news:{},
+    isLoading:true
 }
 
 const newsReducer = (state = INITIAL_STATE, action) => {
@@ -30,11 +31,13 @@ const newsReducer = (state = INITIAL_STATE, action) => {
                 for (const item of action.payload){
                     draftState.news[item.id]=item
                 }
+                draftState.isLoading = false
                 break;
             case LOCAL_ITEMS_FETCHED:
                 for (const item of action.payload){
                     draftState.news[item.id]=item
                 }
+                draftState.isLoading = false
                 break;
         }
     })
