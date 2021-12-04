@@ -3,5 +3,5 @@ export function saveNews(posts){
 }
 
 export function getNews(){
-    return JSON.parse(localStorage.getItem("posts"))
+    return JSON.parse(localStorage.getItem("posts")) || []
 }
