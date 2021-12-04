@@ -37,7 +37,9 @@ const newsReducer = (state = INITIAL_STATE, action) => {
                 for (const item of action.payload){
                     draftState.news[item.id]=item
                 }
-                draftState.isLoading = false
+                if(action.payload.length > 0){
+                    draftState.isLoading = false
+                }
                 break;
         }
     })
