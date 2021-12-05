@@ -1,13 +1,17 @@
 import React, { useEffect,lazy, Suspense } from "react"
 import { maxItemIdFetched, itemsFetched, localItemFetched } from "../redux/actions";
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector,connect } from "react-redux"
 import Header from "./Header"
 import News from "./News";
 import "../assests/css/index.css";
 
 const LazyLoadedFooter = lazy(() => import('./Footer'));
+const LazyLoadedNews = lazy(() => import('./News'));
 
-const NewsContainer = function () {
+const newsSelector = (state) => state.news.news
+
+
+const NewsContainer = function ({news}) {
     const dispatch = useDispatch();
     const maxId = useSelector(state => state.news.maxId)
 
@@ -21,9 +25,15 @@ const NewsContainer = function () {
             <div>
                 <Header/>
             </div>
-            <div id="news">
-                <News/>
-            </div>
+            {
+                news.length > 0 ? 
+                <div id="news">
+                    <Suspense fallback="loading...">
+                        <LazyLoadedNews news={news}/>
+                    </Suspense>
+                </div> :
+                <p>Loading...(It takes time on first load)</p>
+            }
             <div>
                 <Suspense fallback="loading...">
                     <LazyLoadedFooter />
@@ -34,4 +44,11 @@ const NewsContainer = function () {
     )
 }
 
-export default NewsContainer;
+const mapStateToProps = (state) => {
+    return {
+        news : Object.values(newsSelector(state)),
+      //  isLoading : isLoadingSelector(state)
+    }
+}
+
+export default connect(mapStateToProps)(NewsContainer);

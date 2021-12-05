@@ -1,5 +1,5 @@
 export async function newsApi(maxIds){
-    var fetchedItems = [];
+    var fetchedItems = [];   
     var [newsItemCount, index] =[0,0];
     while(true){
         const response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${maxIds-index}.json`)

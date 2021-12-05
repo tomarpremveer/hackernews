@@ -1,6 +1,8 @@
 const { merge:webpackMerge } = require('webpack-merge')
 const common = require('./webpack.common')
 const path = require('path')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 
 module.exports = webpackMerge(common(), {
     mode:'production',
@@ -11,6 +13,10 @@ module.exports = webpackMerge(common(), {
         chunkFilename:'[contenthash].js'
     },
     optimization:{
+        minimizer:[new UglifyJsPlugin({
+            test:/\.js$/,
+            exclude:'/node-modules/',
+        })],
         splitChunks:{
             cacheGroups:{
                 vendor:{

@@ -4,7 +4,6 @@ import NewsExcerpt from "./NewsExcerpt";
 import Paginator from "./Paginator";
 
 
-const newsSelector = (state) => state.news.news
 const isLoadingSelector = (state) => state.news.isLoading
 
 const calculateNews = (news,pageNumber,limit=10) =>{
@@ -14,9 +13,9 @@ const calculateNews = (news,pageNumber,limit=10) =>{
     return newsToRender
 }
 
-const News = function ({newsArray,isLoading}) {
+const News = function ({news,isLoading}) {
     const [pageNumber,setPageNumber] = useState(1);
-    const newsToRender = calculateNews(newsArray,pageNumber)
+    const newsToRender = calculateNews(news,pageNumber)
     return (
         <>
         <div>
@@ -30,7 +29,7 @@ const News = function ({newsArray,isLoading}) {
         </div>
         <div className="footer">
             <Paginator 
-                newsCount={newsArray.length} 
+                newsCount={news.length} 
                 pageClickHandlerCallback={setPageNumber}
             />
         </div>
@@ -40,7 +39,6 @@ const News = function ({newsArray,isLoading}) {
 
 const mapStateToProps = (state) => {
     return {
-        newsArray : Object.values(newsSelector(state)),
         isLoading : isLoadingSelector(state)
     }
 }
