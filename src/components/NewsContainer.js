@@ -1,25 +1,23 @@
 import React, { useEffect,lazy, Suspense } from "react"
-import { maxItemIdFetched, itemsFetched, localItemFetched } from "../redux/actions";
-import { useDispatch, useSelector,connect } from "react-redux"
+import {  itemsFetched, localItemFetched } from "../redux/actions";
+import { useDispatch, connect } from "react-redux"
 import Header from "./Header"
-import News from "./News";
 import "../assests/css/index.css";
 
 const LazyLoadedFooter = lazy(() => import('./Footer'));
-const LazyLoadedNews = lazy(() => import('./News'));
+const LazyLoadedNews = lazy(() => import(/* webpackPrefetch: true */'./News'));
 
 const newsSelector = (state) => state.news.news
 
 
 const NewsContainer = function ({news}) {
     const dispatch = useDispatch();
-    const maxId = useSelector(state => state.news.maxId)
-
+   
     useEffect(() =>{
         dispatch(localItemFetched())
-        dispatch(maxItemIdFetched())
-        if(maxId != 0 ) dispatch(itemsFetched(maxId)) 
-    },[maxId])
+        //dispatch(maxItemIdFetched())
+        dispatch(itemsFetched())
+    },[])
     return (
         <div className="container">
             <div>

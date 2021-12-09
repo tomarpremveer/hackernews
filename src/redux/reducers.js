@@ -1,5 +1,5 @@
 import produce from "immer";
-import {MAX_ITEM_ID_FETCHED, ITEM_UPVOTED, NEWS_FETCHED, LOCAL_ITEMS_FETCHED } from "./actions"
+import { ITEM_UPVOTED, NEWS_FETCHED, LOCAL_ITEMS_FETCHED } from "./actions"
 
 /*
 Normalizing the store strcuture to make sure only one copy of each piece is present,
@@ -12,17 +12,13 @@ news:{
 }
 */
 const INITIAL_STATE = {
-    maxId:0,
     news:{},
     isLoading:true
 }
 
 const newsReducer = (state = INITIAL_STATE, action) => {
    return produce(state, draftState => {
-        switch(action.type) {
-            case MAX_ITEM_ID_FETCHED:
-               draftState.maxId = action.payload
-               break;
+        switch(action.type) { 
             case ITEM_UPVOTED:
                 const newsItem = draftState.news[action.payload]
                 newsItem.score +=1;
