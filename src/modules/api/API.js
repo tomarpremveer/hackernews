@@ -7,7 +7,7 @@ export async function newsApi(){
         .then(items =>{
             topItems.push(...items)
         } );
-    while((index < topItems.length) && index < 100){
+    while(index < 100){
         const item = await fetch(`https://hacker-news.firebaseio.com/v0/item/${topItems[index]}.json`)
         await item
         .json()
