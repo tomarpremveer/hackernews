@@ -1,6 +1,6 @@
 import React, { useEffect,lazy, Suspense } from "react"
 import {  itemsFetched, localItemFetched } from "../redux/actions";
-import { useDispatch, connect } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import Header from "./Header"
 import "../assests/css/index.css";
 
@@ -10,14 +10,14 @@ const LazyLoadedNews = lazy(() => import(/* webpackPrefetch: true */'./News'));
 const newsSelector = (state) => state.news.news
 
 
-const NewsContainer = function ({news}) {
+const NewsContainer = function () {
     const dispatch = useDispatch();
-   
+    const state = useSelector(state => newsSelector(state))
+    const news = Object.values(state);
     useEffect(() =>{
         dispatch(localItemFetched())
-        //dispatch(maxItemIdFetched())
         dispatch(itemsFetched())
-    },[])
+    },[dispatch])
     return (
         <div className="container">
             <div>
@@ -42,11 +42,12 @@ const NewsContainer = function ({news}) {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        news : Object.values(newsSelector(state)),
-      //  isLoading : isLoadingSelector(state)
-    }
-}
+// const mapStateToProps = (state) => {
+//     return {
+//         news : Object.values(newsSelector(state)),
+//       //  isLoading : isLoadingSelector(state)
+//     }
+// }
 
-export default connect(mapStateToProps)(NewsContainer);
+//export default connect(mapStateToProps)(NewsContainer);
+export default NewsContainer;

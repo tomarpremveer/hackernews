@@ -3,7 +3,7 @@ import React from "react";
 
 function Paginator({
     newsCount, 
-    pageClickHandlerCallback = (pageNumber) => { console.log(pageNumber)}
+    pageClickHandler = (pageNumber) => { console.log(pageNumber)}
     }
     ){
         var pages = [];
@@ -20,7 +20,7 @@ function Paginator({
                     <button
                     key ={page} 
                     className="pagination-element"
-                    onClick={() => pageClickHandlerCallback(page)}
+                    onClick={() => pageClickHandler(page)}
                     title={page}
                     >{page}</button>   
                     )) : null

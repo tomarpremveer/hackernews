@@ -1,10 +1,9 @@
-import React,{ useState } from "react";
-import { connect } from "react-redux";
+import React,{ useMemo, useState } from "react";
 import NewsExcerpt from "./NewsExcerpt";
 import Paginator from "./Paginator";
 
 
-const isLoadingSelector = (state) => state.news.isLoading
+//const isLoadingSelector = (state) => state.news.isLoading
 
 const calculateNews = (news,pageNumber,limit=10) =>{
     const startingOffset= (pageNumber -1) * limit
@@ -13,16 +12,16 @@ const calculateNews = (news,pageNumber,limit=10) =>{
     return newsToRender
 }
 
-const News = function ({news,isLoading}) {
+const News = function ({news}) {
     const [pageNumber,setPageNumber] = useState(1);
     const newsToRender = calculateNews(news,pageNumber)
     return (
         <>
         <div>
         { 
-            isLoading === true ? <p>Loading...(It takes time on first load)</p> : 
             newsToRender.length > 0 ?
                 newsToRender.map((news) => (
+                    
                     <NewsExcerpt key={news.id} news={news} />  
                 )) : <p>No items was found</p> 
         }
@@ -30,17 +29,18 @@ const News = function ({news,isLoading}) {
         <div className="footer">
             <Paginator 
                 newsCount={news.length} 
-                pageClickHandlerCallback={setPageNumber}
+                pageClickHandler={setPageNumber}
             />
         </div>
         </>
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        isLoading : isLoadingSelector(state)
-    }
-}
+// const mapStateToProps = (state) => {
+//     return {
+//         isLoading : isLoadingSelector(state)
+//     }
+// }
 
-export default connect(mapStateToProps)(News);
+//export default connect(mapStateToProps)(News);
+export default News;

@@ -13,7 +13,6 @@ news:{
 */
 const INITIAL_STATE = {
     news:{},
-    isLoading:true
 }
 
 const newsReducer = (state = INITIAL_STATE, action) => {

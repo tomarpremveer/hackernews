@@ -7,7 +7,7 @@ function NewsExcerpt({news}) {
         <div  className="row1"> 
             <div className="title">
                  <p>
-                     <a href={news.url} title={news.title} target="_blank">{news.title}</a>
+                     <a href={news.url} rel={"noreferrer"} title={news.title} target="_blank">{news.title}</a>
                 </p>
             </div>
         </div>
@@ -23,4 +23,4 @@ function NewsExcerpt({news}) {
     )
 }
 
-export default NewsExcerpt;
+export default React.memo(NewsExcerpt);
