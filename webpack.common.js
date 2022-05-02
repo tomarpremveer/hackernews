@@ -28,6 +28,17 @@ module.exports = function () {
                     }
                 },
             ]
+        },
+        optimization:{
+            splitChunks:{
+                cacheGroups:{
+                    vendor:{
+                        chunks:'all',
+                        test:/node_modules/,
+                        name:'vendor'
+                    }
+                }
+            }
         }
     }
 }

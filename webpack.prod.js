@@ -8,7 +8,7 @@ module.exports = webpackMerge(common(), {
     mode:'production',
     output:{
         path:path.join(path.resolve(__dirname),"public"),
-        filename:'[contenthash].bundle.js',
+        filename:'[name].[contenthash].bundle.js',
         clean:true,
         chunkFilename:'[contenthash].js'
     },
@@ -17,15 +17,6 @@ module.exports = webpackMerge(common(), {
             test:/\.js$/,
             exclude:'/node-modules/',
         })],
-        splitChunks:{
-            cacheGroups:{
-                vendor:{
-                    chunks:'all',
-                    test:/node_modules/,
-                    name:'vendor'
-                }
-            }
-        }
     },
     resolve: {
         alias: {
