@@ -1,7 +1,7 @@
 const { merge:webpackMerge } = require('webpack-merge')
 const common = require('./webpack.common')
 const path = require('path')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 
 module.exports = webpackMerge(common(), {
@@ -13,9 +13,12 @@ module.exports = webpackMerge(common(), {
         chunkFilename:'[contenthash].js'
     },
     optimization:{
-        minimizer:[new UglifyJsPlugin({
+        minimize:true,
+        minimizer:[new TerserPlugin({
             test:/\.js$/,
-            exclude:'/node-modules/',
+            //exclude:'/node-modules/',
+            parallel:true,
+            minify:TerserPlugin.terserMinify
         })],
     },
     resolve: {
